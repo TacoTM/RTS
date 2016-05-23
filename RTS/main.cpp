@@ -12,6 +12,6 @@ int main()
 	//Set the max framerate of the application to 60
 	game.start(window);
 
-	
+
 	return 0;
 }

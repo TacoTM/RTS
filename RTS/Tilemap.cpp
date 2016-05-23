@@ -16,7 +16,7 @@ void Map::generateMap(sf::RenderWindow &wnd)
 {
 	srand(time(NULL));
 	/*
-	The way this works is that generally every tile will be water at the start, 
+	The way this works is that generally every tile will be water at the start,
 	then points will be randomly chosen as centers for landmasses.
 	Land is then "grown" outward from the center to a max radius.
 	*/
@@ -52,7 +52,7 @@ void Map::configureTile(Tile & newTile, int tileSeed)
 void Map::redrawTiles(sf::RenderWindow &window)
 {
 	//Frustrum culling
-	float startX = 100 * floor(((window.getView().getCenter().x - window.getView().getSize().x/2) + 50) / 100);
+	float startX = 100 * floor(((window.getView().getCenter().x - window.getView().getSize().x / 2) + 50) / 100);
 	float startY = 100 * floor(((window.getView().getCenter().y - window.getView().getSize().y / 2) + 50) / 100);
 
 	float endX = 100 * floor(((window.getView().getCenter().x + window.getView().getSize().x / 2) + 50) / 100);
@@ -63,7 +63,7 @@ void Map::redrawTiles(sf::RenderWindow &window)
 
 	for (int i = beginTile; i <= endTile; ++i)
 	{
-		if (tiles[i].getPosition().x >= startX 
+		if (tiles[i].getPosition().x >= startX
 			&& tiles[i].getPosition().x <= endX
 			&& tiles[i].getPosition().y >= startY
 			&& tiles[i].getPosition().y <= endY)
@@ -75,78 +75,78 @@ void Map::createLandMass()
 {
 	//Grass generation
 
-		int centerTile = (tiles.size()/2);
-		int adjacentTile = ((tiles.size() / 2) + 1);
-		do
+	int centerTile = (tiles.size() / 2);
+	int adjacentTile = ((tiles.size() / 2) + 1);
+	do
+	{
+		generationCounter++;
+		int seed = rand() % 5;
+		if (centerTile < tiles.size() && adjacentTile < tiles.size() && (centerTile + 1) < tiles.size() && (centerTile - 1) < tiles.size())
 		{
-			generationCounter++;
-			int seed = rand() % 5;
-			if (centerTile < tiles.size() && adjacentTile < tiles.size() && (centerTile + 1) < tiles.size() && (centerTile - 1) < tiles.size())
+			switch (seed)
 			{
-				switch (seed)
+			case 1: //Right
+				adjacentTile = centerTile + 1;
+				tiles[adjacentTile].setTileType(1);
+				centerTile = adjacentTile;
+				break;
+			case 2: //Left
+				adjacentTile = centerTile - 1;
+				tiles[adjacentTile].setTileType(1);
+				centerTile = adjacentTile;
+				break;
+			case 3: //Up
+				adjacentTile = findTileAtCoords(tiles[centerTile].getPosition().x, tiles[centerTile].getPosition().y - tileSize);
+				if (adjacentTile < tiles.size())
 				{
-				case 1: //Right
-					adjacentTile = centerTile + 1;
 					tiles[adjacentTile].setTileType(1);
 					centerTile = adjacentTile;
-					break;
-				case 2: //Left
-					adjacentTile = centerTile - 1;
-					tiles[adjacentTile].setTileType(1);
-					centerTile = adjacentTile;
-					break;
-				case 3: //Up
-					adjacentTile = findTileAtCoords(tiles[centerTile].getPosition().x, tiles[centerTile].getPosition().y - tileSize);
-					if (adjacentTile < tiles.size())
-					{
-						tiles[adjacentTile].setTileType(1);
-						centerTile = adjacentTile;
-					}
-					break;
-				case 4: //Down
-					adjacentTile = findTileAtCoords(tiles[centerTile].getPosition().x, tiles[centerTile].getPosition().y + tileSize);
-					if (adjacentTile < tiles.size())
-					{
-						tiles[adjacentTile].setTileType(1);
-						centerTile = adjacentTile;
-					}
-					break;
 				}
-			}
-		} while (generationCounter <= landSize);
-
-
-		//Sand generation
-		for (int j = 0; j < tiles.size(); ++j)
-		{
-			if (tiles[j].getTileType() == Tile::GRASS)
-			{
-				if (j + 1 < tiles.size() || j-1 < tiles.size())
+				break;
+			case 4: //Down
+				adjacentTile = findTileAtCoords(tiles[centerTile].getPosition().x, tiles[centerTile].getPosition().y + tileSize);
+				if (adjacentTile < tiles.size())
 				{
-					int upTile = findTileAtCoords(tiles[j].getPosition().x, tiles[j].getPosition().y - tileSize);
-					int downTile = findTileAtCoords(tiles[j].getPosition().x, tiles[j].getPosition().y + tileSize);
-					if (tiles[j + 1].getTileType() == Tile::WATER)
+					tiles[adjacentTile].setTileType(1);
+					centerTile = adjacentTile;
+				}
+				break;
+			}
+		}
+	} while (generationCounter <= landSize);
+
+
+	//Sand generation
+	for (int j = 0; j < tiles.size(); ++j)
+	{
+		if (tiles[j].getTileType() == Tile::GRASS)
+		{
+			if (j + 1 < tiles.size() || j - 1 < tiles.size())
+			{
+				int upTile = findTileAtCoords(tiles[j].getPosition().x, tiles[j].getPosition().y - tileSize);
+				int downTile = findTileAtCoords(tiles[j].getPosition().x, tiles[j].getPosition().y + tileSize);
+				if (tiles[j + 1].getTileType() == Tile::WATER)
+				{
+					tiles[j + 1].setTileType(2);
+				}
+				else if (tiles[j - 1].getTileType() == Tile::WATER)
+				{
+					tiles[j - 1].setTileType(2);
+				}
+				if (upTile < tiles.size() && downTile < tiles.size())
+				{
+					if (tiles[upTile].getTileType() == Tile::WATER)
 					{
-						tiles[j + 1].setTileType(2);
+						tiles[upTile].setTileType(2);
 					}
-					else if (tiles[j - 1].getTileType() == Tile::WATER)
+					if (tiles[downTile].getTileType() == Tile::WATER)
 					{
-						tiles[j - 1].setTileType(2);
-					}
-					if (upTile < tiles.size() && downTile < tiles.size())
-					{
-						if (tiles[upTile].getTileType() == Tile::WATER)
-						{
-							tiles[upTile].setTileType(2);
-						}
-						if (tiles[downTile].getTileType() == Tile::WATER)
-						{
-							tiles[downTile].setTileType(2);
-						}
+						tiles[downTile].setTileType(2);
 					}
 				}
 			}
 		}
+	}
 }
 
 int Map::findTileAtCoords(float x, float y)

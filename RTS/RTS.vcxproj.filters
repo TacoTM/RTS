@@ -15,32 +15,27 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\..\Source\Repos\NavalRTS\NavalRTS\Game.h">
+    <ClInclude Include="Tilemap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\Source\Repos\NavalRTS\NavalRTS\Tile.h">
+    <ClInclude Include="Tile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\..\Source\Repos\NavalRTS\NavalRTS\Tilemap.h">
+    <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Font Include="..\..\..\..\..\..\Source\Repos\NavalRTS\NavalRTS\OpenSans-Bold.ttf">
-      <Filter>Resource Files</Filter>
-    </Font>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\..\Source\Repos\NavalRTS\NavalRTS\Game.cpp">
+    <ClCompile Include="Tilemap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\Source\Repos\NavalRTS\NavalRTS\main.cpp">
+    <ClCompile Include="Tile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\Source\Repos\NavalRTS\NavalRTS\Tile.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\..\Source\Repos\NavalRTS\NavalRTS\Tilemap.cpp">
+    <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

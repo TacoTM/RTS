@@ -2,22 +2,17 @@
 
 Game::Game()
 {
-	if (!font.loadFromFile("OpenSans-Bold.ttf"))
-	{
-		cout << "Could not load font" << endl;
-	}
-	fps.setFont(font);
 	map.sizeOptions = 1;
 }
 
 void Game::start(sf::RenderWindow & window)
 {
-	
+
 	map.generateMap(window);
 
-	
+
 	map.createLandMass();
-	camera.setCenter(map.mapSizeX/2, map.mapSizeY/2);
+	camera.setCenter(map.mapSizeX / 2, map.mapSizeY / 2);
 	camera.setSize(2500, 5000);
 	gameLogic(window);
 
@@ -25,8 +20,7 @@ void Game::start(sf::RenderWindow & window)
 
 void Game::drawObjects(sf::RenderWindow & window)
 {
-		map.redrawTiles(window);
-		window.draw(fps);
+	map.redrawTiles(window);
 }
 
 void Game::eventProcessing(sf::RenderWindow & window, sf::Time &deltaTime)
@@ -63,14 +57,6 @@ void Game::gameLogic(sf::RenderWindow & window)
 		window.clear(sf::Color::White);
 		drawObjects(window);
 		window.display();
-		
-		/*string frames = "0";
-		float currentTime = deltaTime.asSeconds();
-		float framerate = 1.f / currentTime;
-		string fpsText = to_string(framerate);
-		fps.setString("FPS: " + fpsText);
-		fps.setPosition(window.getView().getCenter().x - 1250, window.getView().getCenter().y - 2500);
-		*/
 	}
 
 }

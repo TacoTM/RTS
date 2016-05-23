@@ -19,18 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\..\Source\Repos\NavalRTS\NavalRTS\Game.h" />
-    <ClInclude Include="..\..\..\..\..\..\Source\Repos\NavalRTS\NavalRTS\Tile.h" />
-    <ClInclude Include="..\..\..\..\..\..\Source\Repos\NavalRTS\NavalRTS\Tilemap.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Tile.h" />
+    <ClInclude Include="Tilemap.h" />
   </ItemGroup>
   <ItemGroup>
-    <Font Include="..\..\..\..\..\..\Source\Repos\NavalRTS\NavalRTS\OpenSans-Bold.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\..\Source\Repos\NavalRTS\NavalRTS\Game.cpp" />
-    <ClCompile Include="..\..\..\..\..\..\Source\Repos\NavalRTS\NavalRTS\main.cpp" />
-    <ClCompile Include="..\..\..\..\..\..\Source\Repos\NavalRTS\NavalRTS\Tile.cpp" />
-    <ClCompile Include="..\..\..\..\..\..\Source\Repos\NavalRTS\NavalRTS\Tilemap.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="Tilemap.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{77F9E1E5-2734-4B74-8676-205CBB9FFBB0}</ProjectGuid>

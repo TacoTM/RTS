@@ -14,14 +14,12 @@ public:
 
 private:
 	sf::Clock clock;
-	
+
 	sf::View camera;
 	sf::Vector2f camVelocity;
-	sf::Text fps;
-	sf::Font font;
 
 	Map map;
-	
+
 	int buffer = 200;
 	float lastTime = 0;
 	float cameraSpeed = 800;
