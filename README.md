@@ -4,6 +4,6 @@ A rendering engine for an underlying 2D tile based RTS. Is able to efficiently u
 
 # What's happening now
 
-It is now being evolved into a game.
+It is now being evolved into a game. I plan on this game having a set map and the player plays through a series of random disasters. The main objective of the player is to keep their island intact as much as possible.
 
 
