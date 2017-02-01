@@ -1,3 +1,6 @@
+#OBSOLETE
+Working on a newer tile generation platform with cleaner code and new methods.
+
 # Introduction
 
 A rendering engine for an underlying 2D tile based RTS. Is able to efficiently update and render 20,000 tiles of 3 different tile types. 
